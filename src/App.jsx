@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import { AnimatePresence, motion } from 'framer-motion';
 import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
+import BackgroundMusic from './components/BackgroundMusic';
 import Home from './pages/Home';
 import Reasons from './pages/Reasons';
 import LoveLetter from './pages/LoveLetter';
@@ -54,6 +55,7 @@ const AppContent = () => {
           </AnimatedPage>
         </AnimatePresence>
       </main>
+      <BackgroundMusic />
     </>
   );
 };

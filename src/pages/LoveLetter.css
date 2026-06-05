@@ -131,6 +131,178 @@
 }
 
 /* Responsive */
+/* Song Section */
+.letter-song-section {
+  margin-top: var(--space-2xl);
+  text-align: center;
+}
+
+.song-divider {
+  margin-bottom: var(--space-lg);
+}
+
+.divider-icon {
+  font-size: 2rem;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.song-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  margin-bottom: var(--space-sm);
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.song-dedication {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xs);
+  line-height: 1.6;
+}
+
+.song-dedication strong {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.song-subtitle {
+  font-family: var(--font-script);
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-lg);
+  opacity: 0.8;
+}
+
+.music-player-container {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.youtube-embed {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(255, 77, 109, 0.15);
+  transition: box-shadow 0.3s ease;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.youtube-embed:hover {
+  box-shadow: 0 0 40px rgba(255, 77, 109, 0.25);
+}
+
+.youtube-embed iframe {
+  display: block;
+  width: 100%;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 8px 12px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.player-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  color: #fff;
+}
+
+.player-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.player-btn:active {
+  transform: scale(0.95);
+}
+
+.player-btn.volume-btn.muted {
+  opacity: 0.6;
+}
+
+.player-btn.spotify-link {
+  margin-left: auto;
+  width: auto;
+  padding: 0 12px;
+  border-radius: 18px;
+  gap: 4px;
+  text-decoration: none;
+  background: rgba(29, 185, 84, 0.2);
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+.player-btn.spotify-link:hover {
+  background: rgba(29, 185, 84, 0.4);
+}
+
+.spotify-icon {
+  font-size: 0.9rem;
+}
+
+.spotify-label {
+  color: #1DB954;
+}
+
+/* Song dedication without player */
+.song-listening-hint {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+  font-style: italic;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+.song-spotify-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: rgba(29, 185, 84, 0.15);
+  border: 1px solid rgba(29, 185, 84, 0.25);
+  border-radius: 50px;
+  color: #1DB954;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.song-spotify-link:hover {
+  background: rgba(29, 185, 84, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(29, 185, 84, 0.2);
+}
+
 @media (max-width: 768px) {
   .letter-container {
     padding: var(--space-xl) var(--space-lg);

@@ -13,7 +13,7 @@ const en = {
   home: {
     title: "365 Reasons",
     titleAccent: "Why I Love You",
-    subtitle: "For every day of the year, there's a reason my heart beats for you.\nExplore, smile, and feel all the love I have for you.",
+    subtitle: "For every day of the year, there's a reason my heart beats for you, Salma.\nExplore, smile, and feel all the love I have for you.",
     ctaPrimary: "Discover Our Reasons",
     ctaSecondary: "Read My Love Letter 💌",
     feature1Title: "365 Reasons",
@@ -25,7 +25,7 @@ const en = {
     feature4Title: "Memory Vault",
     feature4Desc: "Unlock our secret memories",
     quote: "\"I love you not only for what you are, but for what I am when I am with you.\"",
-    quoteAuthor: "— For you, always ❤️",
+    quoteAuthor: "— For Salma, always ❤️",
   },
   reasons: {
     title: "Reasons I Love You",
@@ -46,7 +46,7 @@ const en = {
   letter: {
     title: "A Letter to the One I've Been Waiting For",
     signoff: "Yours, always,",
-    signoffName: "I love you. ❤️",
+    signoffName: "I love you, Salma. ❤️",
     paragraphs: [
       "My Love,",
       "One year. 365 days of messages, voice notes, calls, and falling asleep knowing you're on the other side of the screen. We haven't held hands yet. We haven't sat beside each other. But somehow, in this year, you've become the closest person to my heart.",

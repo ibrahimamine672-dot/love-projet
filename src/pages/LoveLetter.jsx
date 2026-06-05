@@ -41,6 +41,43 @@ const letterData = {
   fr: loveLetterFr,
 };
 
+const SPOTIFY_URL = 'https://open.spotify.com/track/23ZdNaFSfH7VdSVU4U0Agb';
+
+const SongDedication = () => {
+  return (
+    <motion.div
+      className="letter-song-section"
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.3 }}
+    >
+      <div className="song-divider">
+        <span className="divider-icon">🎵</span>
+      </div>
+      <h2 className="song-title">Our Song</h2>
+      <p className="song-dedication">
+        For Salma — <strong>"You Stole The Show"</strong> by SIENNA SPIRO
+      </p>
+      <p className="song-subtitle">
+        "Wrap me in your arms again..."
+      </p>
+
+      <p className="song-listening-hint">
+        ✨ Playing softly in the background — click the floating player below to unmute ✨
+      </p>
+
+      <a
+        href={SPOTIFY_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="song-spotify-link"
+      >
+        🎧 Listen on Spotify
+      </a>
+    </motion.div>
+  );
+};
+
 const LoveLetter = () => {
   const { language, t } = useLanguage();
   const currentLetter = letterData[language] || loveLetter;
@@ -128,6 +165,7 @@ const LoveLetter = () => {
         </div>
 
         {isComplete && (
+          <>
           <motion.div
             className="letter-footer"
             initial={{ opacity: 0 }}
@@ -159,6 +197,10 @@ const LoveLetter = () => {
               </motion.span>
             </div>
           </motion.div>
+
+          {/* Song Section */}
+          <SongDedication />
+          </>
         )}
       </motion.div>
     </div>

@@ -13,7 +13,7 @@ const fr = {
   home: {
     title: "365 Raisons",
     titleAccent: "Pourquoi Je T'Aime",
-    subtitle: "Pour chaque jour de l'année, il y a une raison pour laquelle mon cœur bat pour toi.\nExplore, souris et ressens tout l'amour que j'ai pour toi.",
+    subtitle: "Pour chaque jour de l'année, il y a une raison pour laquelle mon cœur bat pour toi, Salma.\nExplore, souris et ressens tout l'amour que j'ai pour toi.",
     ctaPrimary: "Découvrir Nos Raisons",
     ctaSecondary: "Lire Ma Lettre d'Amour 💌",
     feature1Title: "365 Raisons",
@@ -25,7 +25,7 @@ const fr = {
     feature4Title: "Coffre aux Souvenirs",
     feature4Desc: "Déverrouille nos souvenirs secrets",
     quote: "\"Je t'aime non seulement pour ce que tu es, mais pour ce que je suis quand je suis avec toi.\"",
-    quoteAuthor: "— Pour toi, toujours ❤️",
+    quoteAuthor: "— Pour Salma, toujours ❤️",
   },
   reasons: {
     title: "Raisons Pour Lesquelles Je T'Aime",
@@ -46,7 +46,7 @@ const fr = {
   letter: {
     title: "Une Lettre à Celle Que J'Attends Depuis Toujours",
     signoff: "Toujours à toi,",
-    signoffName: "Je t'aime. ❤️",
+    signoffName: "Je t'aime, Salma. ❤️",
     paragraphs: [
       "Mon Amour,",
       "Un an. 365 jours de messages, de notes vocales, d'appels et de moments passés à m'endormir en sachant que tu es de l'autre côté de l'écran. Nous ne nous sommes jamais tenu la main. Nous ne nous sommes jamais assis l'un à côté de l'autre. Mais d'une manière ou d'une autre, en un an, tu es devenue la personne la plus proche de mon cœur.",

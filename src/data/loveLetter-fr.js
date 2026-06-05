@@ -11,7 +11,7 @@ const lettreAmour = {
     "D'ici là, je continuerai d'être là. Je continuerai de tomber amoureux de toi à travers chaque message, chaque appel, chaque moment que nous partageons malgré la distance.",
     "Un an de passé. Toute une vie de moments à encore découvrir. Merci d'être mon chez-moi, même si nous ne nous sommes jamais tenus dans la même pièce.",
     "Je t'aime. À travers chaque kilomètre, chaque fuseau horaire, chaque jour. Je t'aime.",
-    "Toujours à toi, ❤️"
+    "Pour Salma, de tout mon cœur, toujours. ❤️"
   ]
 };
 

@@ -11,7 +11,7 @@ const loveLetter = {
     "Until then, I'll keep showing up. I'll keep falling more in love with you through every message, every call, every moment we share despite the distance.",
     "One year down. A lifetime of moments to still discover. Thank you for being my home, even though we've never stood in the same room.",
     "I love you. Across every mile, every time zone, every day. I love you.",
-    "Yours, always, ❤️"
+    "For Salma, with all my heart, always. ❤️"
   ]
 };
 
