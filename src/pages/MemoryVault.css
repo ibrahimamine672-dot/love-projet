@@ -1,0 +1,251 @@
+.vault-page {
+  min-height: calc(100vh - 70px);
+  padding: 100px var(--space-lg) var(--space-3xl);
+}
+
+.vault-progress {
+  max-width: 400px;
+  margin: 0 auto var(--space-2xl);
+  text-align: center;
+}
+
+.vault-progress-text {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+.vault-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.vault-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  border-radius: 3px;
+}
+
+.vault-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-lg);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.vault-item {
+  position: relative;
+  min-height: 180px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+.vault-item.locked {
+  background: var(--color-glass);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vault-item.locked:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 20px rgba(253, 121, 168, 0.2);
+}
+
+.vault-item.unlocked {
+  background: linear-gradient(
+    135deg,
+    rgba(231, 76, 111, 0.15),
+    rgba(253, 121, 168, 0.1)
+  );
+  border: 1px solid rgba(253, 121, 168, 0.2);
+  cursor: pointer;
+}
+
+.vault-item.unlocked:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 20px rgba(253, 121, 168, 0.3);
+}
+
+.vault-item-locked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  height: 100%;
+  min-height: 180px;
+  padding: var(--space-lg);
+}
+
+.lock-icon {
+  font-size: 2.5rem;
+}
+
+.vault-item-number {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+.vault-item-hint {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+.vault-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  height: 100%;
+  min-height: 180px;
+}
+
+.vault-item-unlocked-icon {
+  font-size: 1.5rem;
+}
+
+.vault-item-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.vault-item-preview {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.vault-item-tap {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  opacity: 0.8;
+}
+
+/* Modal */
+.vault-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: var(--space-lg);
+}
+
+.vault-modal {
+  position: relative;
+  background: rgba(26, 26, 46, 0.98);
+  border: 1px solid rgba(253, 121, 168, 0.3);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.vault-modal-close {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+}
+
+.vault-modal-close:hover {
+  color: var(--color-text-primary);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.vault-modal-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+}
+
+.vault-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: var(--space-lg);
+  color: var(--color-accent);
+}
+
+.vault-modal-message {
+  margin-bottom: var(--space-lg);
+}
+
+.vault-modal-message p {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+}
+
+.vault-modal-footer {
+  font-size: 1.5rem;
+}
+
+.vault-modal-hearts {
+  animation: float 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Completion Message */
+.vault-complete {
+  text-align: center;
+  margin-top: var(--space-2xl);
+  padding: var(--space-lg);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vault-complete-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: var(--space-md);
+}
+
+.vault-complete-text {
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .vault-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .vault-modal {
+    padding: var(--space-lg);
+  }
+
+  .vault-modal-title {
+    font-size: 1.3rem;
+  }
+
+  .vault-modal-message p {
+    font-size: 1rem;
+  }
+}

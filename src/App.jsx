@@ -1,0 +1,71 @@
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { LanguageProvider } from './context/LanguageContext';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Reasons from './pages/Reasons';
+import LoveLetter from './pages/LoveLetter';
+import FutureDreams from './pages/FutureDreams';
+import MemoryVault from './pages/MemoryVault';
+import './App.css';
+
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  in: { opacity: 1, y: 0 },
+  out: { opacity: 0, y: -20 },
+};
+
+const pageTransition = {
+  type: 'tween',
+  ease: 'anticipate',
+  duration: 0.4,
+};
+
+const AnimatedPage = ({ children }) => {
+  return (
+    <motion.div
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+const AppContent = () => {
+  const location = useLocation();
+
+  return (
+    <>
+      <Navbar />
+      <main className="main-content">
+        <AnimatePresence mode="wait">
+          <AnimatedPage key={location.pathname}>
+            <Routes location={location}>
+              <Route path="/" element={<Home />} />
+              <Route path="/reasons" element={<Reasons />} />
+              <Route path="/letter" element={<LoveLetter />} />
+              <Route path="/dreams" element={<FutureDreams />} />
+              <Route path="/vault" element={<MemoryVault />} />
+            </Routes>
+          </AnimatedPage>
+        </AnimatePresence>
+      </main>
+    </>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <LanguageProvider>
+        <AppContent />
+      </LanguageProvider>
+    </Router>
+  );
+};
+
+export default App;
