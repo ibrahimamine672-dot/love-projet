@@ -1,8 +1,10 @@
+import { useState, useRef, useCallback } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import BackgroundMusic from './components/BackgroundMusic';
+import SplashScreen from './components/SplashScreen';
 import Home from './pages/Home';
 import Reasons from './pages/Reasons';
 import LoveLetter from './pages/LoveLetter';
@@ -55,16 +57,35 @@ const AppContent = () => {
           </AnimatedPage>
         </AnimatePresence>
       </main>
-      <BackgroundMusic />
     </>
   );
 };
 
 const App = () => {
+  const [showSplash, setShowSplash] = useState(true);
+  const musicRef = useRef(null);
+
+  /* Called synchronously inside the splash click handler (user gesture) */
+  const handleEnter = useCallback(() => {
+    musicRef.current?.start();
+  }, []);
+
   return (
     <Router>
       <LanguageProvider>
-        <AppContent />
+        {/* BackgroundMusic is always mounted — persists through splash → content transition */}
+        <BackgroundMusic ref={musicRef} />
+
+        {showSplash ? (
+          <SplashScreen
+            onStart={handleEnter}
+            onFinish={() => setShowSplash(false)}
+          />
+        ) : (
+          <div className="content-fade-in">
+            <AppContent />
+          </div>
+        )}
       </LanguageProvider>
     </Router>
   );
