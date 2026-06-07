@@ -7,6 +7,7 @@ import BackgroundMusic from './components/BackgroundMusic';
 import SplashScreen from './components/SplashScreen';
 import RotatingBackground from './components/RotatingBackground';
 import FallingSalma from './components/FallingSalma';
+import OceanWaves from './components/OceanWaves';
 import Home from './pages/Home';
 import Reasons from './pages/Reasons';
 import LoveLetter from './pages/LoveLetter';
@@ -78,6 +79,7 @@ const App = () => {
         {/* Background visual effects — always behind everything */}
         <RotatingBackground />
         <FallingSalma />
+        <OceanWaves />
 
         {/* BackgroundMusic is always mounted — persists through splash → content transition */}
         <BackgroundMusic ref={musicRef} />

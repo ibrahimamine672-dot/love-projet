@@ -1,0 +1,63 @@
+.ocean-waves {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: 120px;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.12;
+}
+
+.ocean-waves__svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  animation: waveDrift 12s ease-in-out infinite alternate;
+}
+
+.ocean-waves__svg--slow {
+  animation-duration: 18s;
+  animation-direction: alternate-reverse;
+  opacity: 0.6;
+}
+
+.ocean-waves__svg--fast {
+  animation-duration: 8s;
+  animation-direction: alternate;
+  opacity: 0.4;
+}
+
+.ocean-waves__path {
+  fill: var(--color-bg-teal, #2a5a6a);
+}
+
+.ocean-waves__path--light {
+  fill: var(--color-accent-light, #fdcbe6);
+  opacity: 0.3;
+}
+
+.ocean-waves__path--dark {
+  fill: var(--color-bg-light, #1a3a5c);
+  opacity: 0.5;
+}
+
+@keyframes waveDrift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive: shorter wave on mobile */
+@media (max-width: 768px) {
+  .ocean-waves {
+    height: 60px;
+    opacity: 0.08;
+  }
+}
