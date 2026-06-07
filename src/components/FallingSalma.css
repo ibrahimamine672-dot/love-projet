@@ -1,0 +1,48 @@
+.falling-salma {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.falling-salma__item {
+  position: absolute;
+  top: -80px;
+  font-family: var(--font-script, 'Dancing Script', cursive);
+  font-weight: 600;
+  color: var(--color-primary-light, #f8a5b4);
+  opacity: 0;
+  user-select: none;
+  white-space: nowrap;
+  will-change: transform, opacity;
+  animation: fallSalma linear infinite;
+  text-shadow: 0 0 40px var(--color-accent, #fd79a8);
+}
+
+@keyframes fallSalma {
+  0% {
+    transform: translateY(-20px) rotate(-8deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: var(--fall-peak-opacity, 0.12);
+  }
+  75% {
+    opacity: var(--fall-peak-opacity, 0.12);
+  }
+  100% {
+    transform: translateY(calc(100vh + 100px)) rotate(8deg);
+    opacity: 0;
+  }
+}
+
+/* Responsive: fewer items visible / smaller text on mobile */
+@media (max-width: 768px) {
+  .falling-salma {
+    opacity: 0.6;
+  }
+}

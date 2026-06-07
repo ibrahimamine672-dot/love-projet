@@ -5,6 +5,8 @@ import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import BackgroundMusic from './components/BackgroundMusic';
 import SplashScreen from './components/SplashScreen';
+import RotatingBackground from './components/RotatingBackground';
+import FallingSalma from './components/FallingSalma';
 import Home from './pages/Home';
 import Reasons from './pages/Reasons';
 import LoveLetter from './pages/LoveLetter';
@@ -73,6 +75,10 @@ const App = () => {
   return (
     <Router>
       <LanguageProvider>
+        {/* Background visual effects — always behind everything */}
+        <RotatingBackground />
+        <FallingSalma />
+
         {/* BackgroundMusic is always mounted — persists through splash → content transition */}
         <BackgroundMusic ref={musicRef} />
 
