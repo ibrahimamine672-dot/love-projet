@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import loveLetter from '../data/loveLetter';
 import loveLetterFr from '../data/loveLetter-fr';
+import loveLetterAr from '../data/loveLetter-ar';
 import './LoveLetter.css';
 
 const TypewriterText = ({ text, speed = 30, onComplete }) => {
@@ -39,6 +40,7 @@ const TypewriterText = ({ text, speed = 30, onComplete }) => {
 const letterData = {
   en: loveLetter,
   fr: loveLetterFr,
+  ar: loveLetterAr,
 };
 
 const SPOTIFY_URL = 'https://open.spotify.com/track/23ZdNaFSfH7VdSVU4U0Agb';

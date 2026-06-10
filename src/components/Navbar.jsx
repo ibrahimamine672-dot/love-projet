@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLanguage } from '../context/LanguageContext';
+import { useLanguage, LANGUAGE_FLAGS, LANGUAGE_NAMES } from '../context/LanguageContext';
 import './Navbar.css';
 
 const navLinks = [
@@ -16,7 +16,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [clickedLinks, setClickedLinks] = useState(new Set());
   const timersRef = useRef({});
-  const { t, toggleLanguage, language } = useLanguage();
+  const { t, cycleLanguage, language, nextLanguage } = useLanguage();
   const location = useLocation();
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -69,11 +69,11 @@ const Navbar = () => {
         <div className="nav-right">
           <button
             className="lang-toggle"
-            onClick={(e) => { e.stopPropagation(); toggleLanguage(); }}
+            onClick={(e) => { e.stopPropagation(); cycleLanguage(); }}
             aria-label={t.common.toggleLang}
           >
-            <span className="lang-flag">{language === 'en' ? '🇫🇷' : '🇬🇧'}</span>
-            <span className="lang-label">{t.common.toggleLang}</span>
+            <span className="lang-flag">{LANGUAGE_FLAGS[nextLanguage]}</span>
+            <span className="lang-label">{LANGUAGE_NAMES[nextLanguage]}</span>
           </button>
 
           <button

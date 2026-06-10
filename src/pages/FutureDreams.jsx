@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import futureDreams from '../data/futureDreams';
 import revesFuturs from '../data/futureDreams-fr';
+import futureDreamsAr from '../data/futureDreams-ar';
 import './FutureDreams.css';
 
 const TimelineItem = ({ dream, index, isExpanded, onToggle }) => {
@@ -79,6 +80,7 @@ const TimelineItem = ({ dream, index, isExpanded, onToggle }) => {
 const dreamsData = {
   en: futureDreams,
   fr: revesFuturs,
+  ar: futureDreamsAr,
 };
 
 const FutureDreams = () => {

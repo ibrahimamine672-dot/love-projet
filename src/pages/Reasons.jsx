@@ -3,11 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import reasons from '../data/reasons';
 import reasonsFr from '../data/reasons-fr';
+import reasonsAr from '../data/reasons-ar';
 import ReasonCard from '../components/ReasonCard';
 import ProgressCounter from '../components/ProgressCounter';
 import './Reasons.css';
 
-const reasonsData = { en: reasons, fr: reasonsFr };
+const reasonsData = { en: reasons, fr: reasonsFr, ar: reasonsAr };
 
 const Reasons = () => {
   const { t, language } = useLanguage();

@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import secretMessages from '../data/secretMessages';
 import messagesSecrets from '../data/secretMessages-fr';
+import secretMessagesAr from '../data/secretMessages-ar';
 import './MemoryVault.css';
 
 const vaultData = {
   en: secretMessages,
   fr: messagesSecrets,
+  ar: secretMessagesAr,
 };
 
 const MemoryVault = () => {

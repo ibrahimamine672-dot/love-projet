@@ -1,22 +1,96 @@
-import { useState, useRef, useCallback, forwardRef, useImperativeHandle } from 'react';
+import { useState, useRef, useCallback, forwardRef, useImperativeHandle, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './BackgroundMusic.css';
 
-const YOUTUBE_ID = 'viimfQi_pUw';
-const SPOTIFY_URL = 'https://open.spotify.com/intl-fr/track/7hDVYcQq6MxkdJGweuCtl9';
+const YOUTUBE_ID = 'sElE_BfQ67s';
+const SPOTIFY_URL = 'https://open.spotify.com/intl-fr/track/1oAwsWBovWRIp7qLMGPIet';
 
 const BackgroundMusic = forwardRef((_props, ref) => {
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
-  const iframeRef = useRef(null);
+  const playerRef = useRef(null);
+  const playerReadyRef = useRef(false);
+  const containerRef = useRef(null);
+  const apiReadyRef = useRef(false);
+  const pendingCommands = useRef([]);
 
-  const sendCommand = useCallback((command) => {
-    if (iframeRef.current?.contentWindow) {
-      iframeRef.current.contentWindow.postMessage(
-        JSON.stringify({ event: 'command', func: command, args: [] }),
-        '*'
-      );
+  // ── Load YouTube IFrame API only once ──
+  useEffect(() => {
+    if (window.YT && window.YT.Player) {
+      apiReadyRef.current = true;
+      return;
+    }
+    if (document.querySelector('#youtube-iframe-api')) return;
+
+    const tag = document.createElement('script');
+    tag.id = 'youtube-iframe-api';
+    tag.src = 'https://www.youtube.com/iframe_api';
+    const firstScript = document.getElementsByTagName('script')[0];
+    firstScript.parentNode.insertBefore(tag, firstScript);
+
+    window.onYouTubeIframeAPIReady = () => {
+      apiReadyRef.current = true;
+      // Flush any pending player creation
+      if (containerRef.current) {
+        createPlayer();
+      }
+    };
+
+    // Note: intentionally not cleaning up onYouTubeIframeAPIReady
+    // because the script tag persists across re-mounts (StrictMode, HMR)
+  }, []);
+
+  const createPlayer = useCallback(() => {
+    if (!window.YT || !window.YT.Player) return;
+    if (playerRef.current) return;
+
+    const player = new window.YT.Player(containerRef.current, {
+      height: '1',
+      width: '1',
+      videoId: YOUTUBE_ID,
+      playerVars: {
+        autoplay: 0,
+        mute: 1,
+        controls: 0,
+        modestbranding: 1,
+        rel: 0,
+        loop: 1,
+        playlist: YOUTUBE_ID,
+      },
+      events: {
+        onReady: () => {
+          playerReadyRef.current = true;
+          // Flush queued commands
+          pendingCommands.current.forEach(cmd => cmd());
+          pendingCommands.current = [];
+        },
+      },
+    });
+    playerRef.current = player;
+  }, []);
+
+  // ── Create player once container and API are ready ──
+  useEffect(() => {
+    if (apiReadyRef.current) {
+      createPlayer();
+    }
+
+    return () => {
+      // Clean up the player on unmount
+      if (playerRef.current && playerRef.current.destroy) {
+        playerRef.current.destroy();
+        playerRef.current = null;
+        playerReadyRef.current = false;
+      }
+    };
+  }, [createPlayer]);
+
+  const runOrQueue = useCallback((fn) => {
+    if (playerReadyRef.current && playerRef.current) {
+      fn(playerRef.current);
+    } else {
+      pendingCommands.current.push(() => fn(playerRef.current));
     }
   }, []);
 
@@ -25,28 +99,34 @@ const BackgroundMusic = forwardRef((_props, ref) => {
     start: () => {
       setIsPlaying(true);
       setIsMuted(false);
-      sendCommand('unMute');
-      sendCommand('playVideo');
+      runOrQueue((player) => {
+        player.unMute();
+        player.playVideo();
+      });
     },
-  }), [sendCommand]);
+  }), [runOrQueue]);
 
   const handleToggleMute = useCallback(() => {
-    if (isMuted) {
-      sendCommand('unMute');
-    } else {
-      sendCommand('mute');
-    }
+    runOrQueue((player) => {
+      if (isMuted) {
+        player.unMute();
+      } else {
+        player.mute();
+      }
+    });
     setIsMuted(!isMuted);
-  }, [isMuted, sendCommand]);
+  }, [isMuted, runOrQueue]);
 
   const handleTogglePlay = useCallback(() => {
-    if (isPlaying) {
-      sendCommand('pauseVideo');
-    } else {
-      sendCommand('playVideo');
-    }
+    runOrQueue((player) => {
+      if (isPlaying) {
+        player.pauseVideo();
+      } else {
+        player.playVideo();
+      }
+    });
     setIsPlaying(!isPlaying);
-  }, [isPlaying, sendCommand]);
+  }, [isPlaying, runOrQueue]);
 
   const handleToggleMinimize = useCallback(() => {
     setIsMinimized(!isMinimized);
@@ -54,18 +134,8 @@ const BackgroundMusic = forwardRef((_props, ref) => {
 
   return (
     <div className="bg-music-wrapper">
-      {/* Hidden YouTube iframe — no autoplay; start() triggers playback */}
-      <div className="bg-music-iframe-container">
-        <iframe
-          ref={iframeRef}
-          src={`https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=0&mute=1&controls=0&modestbranding=1&rel=0&loop=1&playlist=${YOUTUBE_ID}&enablejsapi=1`}
-          width="0"
-          height="0"
-          frameBorder="0"
-          allow="autoplay; encrypted-media"
-          title="Background Music"
-        />
-      </div>
+      {/* Hidden YouTube player container */}
+      <div className="bg-music-iframe-container" ref={containerRef} />
 
       <AnimatePresence>
         <motion.div
@@ -96,7 +166,7 @@ const BackgroundMusic = forwardRef((_props, ref) => {
                 <div className="bg-music-text">
                   <span className="bg-music-label">Now Playing</span>
                   <span className="bg-music-title">
-                    &ldquo;ocean eyes&rdquo; <span className="bg-music-artist">— Billie Eilish</span>
+                    &ldquo;Apocalypse&rdquo; <span className="bg-music-artist">— Cigarettes After Sex</span>
                   </span>
                 </div>
               </div>
