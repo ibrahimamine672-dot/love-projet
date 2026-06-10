@@ -335,3 +335,52 @@
     gap: 0.6rem;
   }
 }
+
+/* Very small / short screens */
+@media (max-height: 600px) {
+  .splash-rose {
+    font-size: 3rem;
+  }
+
+  .splash-rose-glow {
+    width: 80px;
+    height: 80px;
+  }
+
+  .splash-title {
+    font-size: 1.3rem;
+    margin-top: 0.25rem;
+  }
+
+  .splash-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .splash-entry-prompt {
+    bottom: 10%;
+  }
+}
+
+@media (max-width: 360px) {
+  .splash-rose {
+    font-size: 3.2rem;
+  }
+
+  .splash-rose-glow {
+    width: 80px;
+    height: 80px;
+  }
+
+  .splash-title {
+    font-size: 1.3rem;
+  }
+
+  .splash-subtitle {
+    font-size: 0.7rem;
+  }
+
+  .splash-entry-text {
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+  }
+}

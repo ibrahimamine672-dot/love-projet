@@ -79,12 +79,16 @@ body {
     var(--color-bg-sand) 100%
   );
   color: var(--color-text-primary);
+  min-height: -webkit-fill-available;
   min-height: 100vh;
   overflow-x: hidden;
   line-height: 1.6;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
 }
 
 #root {
+  min-height: -webkit-fill-available;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -220,10 +224,32 @@ img {
   70% { transform: scale(1); }
 }
 
+/* Ensure all interactive elements have adequate touch targets */
+button, a, .nav-link, .feature-card, .vault-item, .timeline-card {
+  touch-action: manipulation;
+}
+
+/* Prevent iOS zoom on input focus */
+input, textarea, select {
+  font-size: 16px;
+}
+
+/* Safe area insets for notched devices */
+.navbar {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.main-content {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .page {
     padding: var(--space-2xl) var(--space-md);
+    padding-bottom: max(var(--space-2xl), env(safe-area-inset-bottom, 24px));
   }
 
   .page-title {
@@ -238,5 +264,24 @@ img {
 @media (max-width: 480px) {
   .page-title {
     font-size: 1.5rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .page {
+    padding: var(--space-xl) var(--space-sm);
+    padding-bottom: max(var(--space-xl), env(safe-area-inset-bottom, 20px));
+  }
+
+  .page-title {
+    font-size: 1.3rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.9rem;
   }
 }
